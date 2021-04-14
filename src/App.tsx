@@ -1,23 +1,34 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 import './assets/styles/Common.sass'
+import Modal from './components/Modal/Index';
 import SearchLine from './components/SearchLine/Index';
 import Snippets from './components/Snippets/Index';
 
 const App = () => {
   const styles = useStyles()
   const [snippets, setSnippets] = useState<any []>([])
+  const [openModal, setOpenModal] = useState(false)
+  const [activeSnippet, setActiveSnippet] = useState('')
 
   return (
     <div className = {styles.root}>
-      <div className = {styles.item}>
-        <SearchLine setSnippets = {setSnippets}/>
-      </div>
+
+      <SearchLine setSnippets = {setSnippets}/>
 
       {snippets.length > 0 &&
-        <div className = {styles.item}>
-          <Snippets snippets = {snippets}/>
-        </div>
+        <Snippets 
+          snippets = {snippets} 
+          setActiveSnippet = {setActiveSnippet}
+          setOpenModal = {setOpenModal}
+        />
+      }
+
+      {openModal && 
+        <Modal 
+          snippet = {snippets.find(el => el.key === activeSnippet)}
+          setOpenModal = {setOpenModal}
+        />
       }
     </div>
   )
@@ -27,7 +38,14 @@ const App = () => {
 const useStyles = createUseStyles({
   root: {
     margin: '0 auto',
-    padding: '20px 5%'
+    padding: '20px 5%',
+    height: 'auto',
+    minHeight: '100vh',
+    position: 'relative',
+    
+    '& > div:not(:last-of-type)': {
+      marginBottom: '20px'
+    }
   },
   
   item: {

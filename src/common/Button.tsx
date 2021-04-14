@@ -21,6 +21,8 @@ const Button = ({children, classname, onClick} : btnProps) => {
 const useStyles = createUseStyles({
     root: {
         cursor: 'pointer',
+        background: 'inherit',
+        border: '1px solid black'
     }
 })
 

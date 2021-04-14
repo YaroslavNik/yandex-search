@@ -27,6 +27,9 @@ const SearchLine = ({setSnippets} : {setSnippets: ([]) => void}) => {
 
 const useStyles = createUseStyles({
     root: {
+        '& > input': {
+            marginRight: '10px',
+        }
     }
 })
 

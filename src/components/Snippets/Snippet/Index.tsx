@@ -5,14 +5,17 @@ import { coverURL } from '../../../API/API';
 interface SnippetProps {
     author?: [],
     coverId: [] | null,
-    title: string 
+    title: string,
+    id: string,
+    setActiveSnippet: (value: string) => void
+    setOpenModal: (value: boolean) => void
 }
 
-const Snippet = ({author, coverId, title} : SnippetProps) => {
+const Snippet = ({author, coverId, title, id, setActiveSnippet, setOpenModal} : SnippetProps) => {
     const styles = useStyles()
 
     return (
-        <div className = {`${styles.root} `}>
+        <div className = {`${styles.root} `} onClick = {() => {setActiveSnippet(id); setOpenModal(true);}}>
             <ul className = 'flex-row'>
                 <li className = 'flex-row'>{author}</li>
                 <li className = 'flex-row'>
@@ -28,6 +31,13 @@ const Snippet = ({author, coverId, title} : SnippetProps) => {
 
 const useStyles = createUseStyles({
     root: {
+        cursor: 'pointer',
+        borderRadius: '5px',
+
+        '&:hover': {
+            boxShadow: '0 0px 13px rgb(0, 0, 0, 0.25)'
+        },
+
         '&:not(:last-child)': {
             marginBottom: '10px',
         },
@@ -36,8 +46,6 @@ const useStyles = createUseStyles({
             minHeight: '40px',
             height: 'auto',
             padding: '5px 10px',
-            border: '1px solid black',
-            borderRadius: '5px'
         }
     }
 })
