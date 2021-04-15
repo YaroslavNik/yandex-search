@@ -12,7 +12,7 @@ const Snippets = ({snippets, setActiveSnippet, setOpenModal} : snippetsProps) =>
     const styles = useStyles()
     
     return (
-        <div className = {styles.root}>
+        <div className = {`${styles.root}`}>
             {snippets.map(el => 
                 <Snippet 
                     author={el.author_name} 
@@ -30,8 +30,20 @@ const Snippets = ({snippets, setActiveSnippet, setOpenModal} : snippetsProps) =>
 
 const useStyles = createUseStyles({
     root: {
-
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr 1fr',
     },
+
+    '@media screen and (max-width: 1024px)': {
+        root: {
+            display: 'flex',
+            flexWrap: 'wrap',
+
+            '& > *': {
+                flexBasis: '100%',
+            }
+        }
+    }
 })
 
 export default Snippets

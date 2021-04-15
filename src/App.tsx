@@ -38,7 +38,7 @@ const App = () => {
 const useStyles = createUseStyles({
   root: {
     margin: '0 auto',
-    padding: '20px 5%',
+    padding: '20px 10px',
     height: 'auto',
     minHeight: '100vh',
     position: 'relative',

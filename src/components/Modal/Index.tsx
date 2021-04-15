@@ -1,7 +1,7 @@
 import React from 'react'
 import { createUseStyles } from 'react-jss'
-import ClickAwayListener from 'react-click-away-listener';
 import { coverURL } from '../../API/API';
+import {ReactComponent as EmptyBookImg} from '../../assets/images/bookEmpty.svg'
 
 interface modalProps {
     snippet: any ,
@@ -15,16 +15,18 @@ const Modal = ({snippet, setOpenModal}: modalProps) => {
         setOpenModal(false)
     }
 
-
     return (
         <div className = {styles.root} onClick = {(e) => e.currentTarget.children && closeModal()}>
             <div className = {styles.modal}>
                 <h1>{snippet.title}</h1>
-                {snippet?.isbn[0] && <img src = {`${coverURL}${snippet.isbn[0]}-L.jpg`}/>}
-                <p>{snippet.author_name.join(' ')}</p>
+                {snippet.isbn
+                    ? <img src = {`${coverURL}${snippet.isbn[0]}-L.jpg`}/>
+                    : <EmptyBookImg/>
+                }
+                <p>{snippet.author_name?.join(', ')}</p>
                 <p>{snippet.first_publish_year}</p>
-                <p>{snippet.publisher.join(' ')}</p>
-                <p>{snippet.isbn.join(' ')}</p>
+                <p>{snippet.publisher?.join(', ')}</p>
+                <p>{snippet.isbn?.join(', ')}</p>
             </div>
         </div>
     )
@@ -55,11 +57,24 @@ const useStyles = createUseStyles({
         cursor: 'auto',
         minWidth: '280px',
         maxWidth: '640px',
+        overflowY: 'scroll',
+        maxHeight: '100vh',
+
+        '& > *:not(:last-child)': {
+            marginBottom: '20px',
+        },
+
+        '& > h1': {
+            textAlign: 'center'
+        },
+
+        '& > img, & > svg': {
+            height: '600px',
+            width: '60%',
+            objectFit: 'cover',
+        },
 
         '& > img': {
-            height: '200px',
-            width: '100px',
-            objectFit: 'cover',
             background: 'lightgray',
         }
     }

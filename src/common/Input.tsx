@@ -2,21 +2,21 @@ import React, { useCallback } from 'react'
 import { createUseStyles } from 'react-jss'
 import classNames from 'classnames';
 
-interface btnProps {
-    classname?: string,
+interface inputProps {
+    className?: string,
     onChange?: (value: string) => void;
     value?: string,
     placeholder?: string,
     type: string
 }
 
-const Input = ({classname, onChange, value, placeholder, type} : btnProps) => {
+const Input = ({className, onChange, value, placeholder, type} : inputProps) => {
     const styles = useStyles()
     const handleChange = useCallback((e) => onChange && onChange(e.target.value), [onChange]);
 
     return (
         <input
-            className = {classNames(styles.root, classname)}
+            className = {classNames(styles.root, className)}
             type = {type}
             value={value}
             onChange={handleChange}
@@ -27,9 +27,9 @@ const Input = ({classname, onChange, value, placeholder, type} : btnProps) => {
 
 const useStyles = createUseStyles({
     root: {
-        border: '1px solid black',
         borderRadius: '5px',
-        padding: '5px 7px'
+        padding: '5px 7px',
+        width: '100%'
     }
 })
 
