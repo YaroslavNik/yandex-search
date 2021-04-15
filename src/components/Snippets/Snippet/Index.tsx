@@ -17,13 +17,13 @@ const Snippet = ({author, coverId, title, id, setActiveSnippet, setOpenModal} : 
     return (
         <div className = {`${styles.root} `} onClick = {() => {setActiveSnippet(id); setOpenModal(true);}}>
             <ul className = 'flex-row'>
-                <li className = 'flex-row'>{author}</li>
                 <li className = 'flex-row'>
                     {coverId !== null &&
                         <img src = {`${coverURL}${coverId}-S.jpg`}/>
                     }
                 </li>
-                <li className = 'flex-row'>{title}</li>
+                <li className = {`${styles.title} flex-row`}>{title}</li>
+                <li className = 'flex-row'>{author}</li>
             </ul>
         </div>
     )
@@ -38,16 +38,19 @@ const useStyles = createUseStyles({
             boxShadow: '0 0px 13px rgb(0, 0, 0, 0.25)'
         },
 
-        '&:not(:last-child)': {
-            marginBottom: '10px',
+        '& > ul': {
+            height: '70px',
+            padding: '5px 10px',
         },
 
-        '& > ul': {
-            minHeight: '40px',
-            height: 'auto',
-            padding: '5px 10px',
+        '& li:not(:last-child)': {
+            marginRight: '10px'
         }
+    },
+
+    title: {
+        fontWeight: 'bold'
     }
 })
 
-export default Snippet
+export default React.memo(Snippet)

@@ -15,7 +15,6 @@ const Modal = ({snippet, setOpenModal}: modalProps) => {
         setOpenModal(false)
     }
 
-    console.log(snippet)
 
     return (
         <div className = {styles.root} onClick = {(e) => e.currentTarget.children && closeModal()}>
@@ -54,6 +53,8 @@ const useStyles = createUseStyles({
         alignItems: 'center',
         padding: '20px',
         cursor: 'auto',
+        minWidth: '280px',
+        maxWidth: '640px',
 
         '& > img': {
             height: '200px',
