@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const apiURL = 'http://openlibrary.org';
-export const coverURL = 'http://covers.openlibrary.org/b/isbn/'; // isbn - id
+const apiURL = 'https://openlibrary.org';
+export const coverURL = 'https://covers.openlibrary.org/b/isbn/'; // isbn - id
 
 const instance = axios.create({
   baseUrl: apiURL,

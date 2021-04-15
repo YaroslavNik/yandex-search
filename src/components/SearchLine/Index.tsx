@@ -26,8 +26,6 @@ const SearchLine = ({setSnippets} : {setSnippets: ([]) => void}) => {
         setSnippets(response.docs)
     }
 
-    console.log('render')
-
     useEffect(() => {
         if (timer) {
             clearTimeout(timeoutRef.current);
