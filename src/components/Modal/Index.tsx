@@ -18,6 +18,7 @@ const Modal = ({snippet, setOpenModal}: modalProps) => {
     return (
         <div className = {styles.root} onClick = {(e) => e.currentTarget.children && closeModal()}>
             <div className = {styles.modal}>
+                <p className = {styles.close}>&times;</p>
                 <h1>{snippet.title}</h1>
                 {snippet.isbn
                     ? <img src = {`${coverURL}${snippet.isbn[0]}-L.jpg`}/>
@@ -77,6 +78,23 @@ const useStyles = createUseStyles({
         '& > img': {
             background: 'lightgray',
         }
+    },
+
+    close: {
+        display: 'none'
+    },
+
+    '@media screen and (max-width: 768px)': {
+        modal: {
+            maxWidth: '100%',
+            width: '100%'
+        },
+
+        close: {
+            display: 'block',
+            fontSize: '60px',
+            marginLeft: 'auto'
+        },
     }
 })
 
